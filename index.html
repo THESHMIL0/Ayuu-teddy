@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Teddy Day! 🧸</title>
+    <style>
+        /* CSS: This handles the design and look of the website */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #ffe6e9; /* Soft pink background */
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Prevents scrollbars from floating hearts */
+        }
+
+        .card {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 350px;
+            width: 90%;
+            z-index: 10; /* Keeps card above hearts */
+            position: relative;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #ff4d6d;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .teddy-img {
+            width: 200px;
+            height: auto;
+            margin: 20px 0;
+            animation: bounce 2s infinite ease-in-out;
+        }
+
+        p {
+            color: #590d22;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .btn {
+            background-color: #ff4d6d;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 20px;
+            font-family: 'Quicksand', sans-serif;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #ff758f;
+        }
+
+        /* Cute bounce animation for the teddy */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Floating Heart Styles */
+        .heart {
+            position: absolute;
+            bottom: -10px;
+            color: #ff4d6d;
+            font-size: 24px;
+            animation: floatUp 4s linear forwards;
+            opacity: 0;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0); opacity: 1; }
+            100% { transform: translateY(-100vh); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Happy Teddy Day!</h1>
+        <img src="https://cdn-icons-png.flaticon.com/512/4710/4710099.png" alt="Cute Teddy Bear" class="teddy-img">
+        
+        <p>
+            Sending you this big bear hug to say 
+            how much I love you! <br>
+            You are softer and sweeter than any teddy.
+        </p>
+
+        <button class="btn" onclick="sendLove()">Send a Hug 🤗</button>
+    </div>
+
+    <script>
+        // JavaScript: This adds the interactivity
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.innerHTML = '❤️'; // You can change this to 🧸 if you prefer!
+            
+            // Randomize position and size
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+            
+            // Randomize animation duration
+            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+
+            document.body.appendChild(heart);
+
+            // Remove heart after animation keeps the browser fast
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Create a background heart every 300ms
+        setInterval(createHeart, 300);
+
+        // Interaction for the button
+        function sendLove() {
+            alert("Hug sent successfully! ❤️🧸");
+            // Burst of hearts on click
+            for(let i=0; i<10; i++) {
+                setTimeout(createHeart, i * 100);
+            }
+        }
+    </script>
+</body>
+</html>
