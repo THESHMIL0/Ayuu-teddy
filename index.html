@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Teddy Day! 🧸</title>
+    <title>For My Real Life Teddy 🧸</title>
     <style>
-        /* CSS: This handles the design and look of the website */
+        /* CSS: The Design Layer */
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
 
         body {
@@ -17,67 +17,92 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden; /* Prevents scrollbars from floating hearts */
+            overflow: hidden; /* Keeps the hearts inside the window */
         }
 
         .card {
-            background: white;
+            background: rgba(255, 255, 255, 0.95);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 350px;
+            max-width: 400px;
             width: 90%;
-            z-index: 10; /* Keeps card above hearts */
+            z-index: 10;
             position: relative;
+            border: 2px solid #fff0f3;
         }
 
         h1 {
             font-family: 'Pacifico', cursive;
             color: #ff4d6d;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            margin-top: 0;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        .teddy-img {
-            width: 200px;
-            height: auto;
-            margin: 20px 0;
-            animation: bounce 2s infinite ease-in-out;
+        /* --- THE GALLERY STYLES --- */
+        .gallery {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .gallery-img {
+            width: 90px;
+            height: 90px;
+            object-fit: cover; /* This makes sure the photo fills the circle neatly */
+            border-radius: 50%; /* Makes the photos circular */
+            border: 4px solid #ffccd5;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        /* Cute hover effect when you touch a photo */
+        .gallery-img:hover {
+            transform: scale(1.15) rotate(5deg);
+            border-color: #ff4d6d;
         }
 
         p {
             color: #590d22;
             font-size: 1.1rem;
             line-height: 1.6;
+            margin: 20px 0;
+        }
+
+        .highlight {
+            color: #ff4d6d;
+            font-weight: bold;
         }
 
         .btn {
-            background-color: #ff4d6d;
+            background: linear-gradient(45deg, #ff4d6d, #ff758f);
             color: white;
             border: none;
-            padding: 12px 25px;
+            padding: 12px 30px;
             border-radius: 50px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             cursor: pointer;
-            margin-top: 20px;
             font-family: 'Quicksand', sans-serif;
             font-weight: 600;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
         }
 
         .btn:hover {
-            transform: scale(1.05);
-            background-color: #ff758f;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 77, 109, 0.5);
         }
 
-        /* Cute bounce animation for the teddy */
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+        .btn:active {
+            transform: scale(0.95);
         }
 
-        /* Floating Heart Styles */
+        /* Floating Heart Animation */
         .heart {
             position: absolute;
             bottom: -10px;
@@ -85,62 +110,73 @@
             font-size: 24px;
             animation: floatUp 4s linear forwards;
             opacity: 0;
+            z-index: 1;
         }
 
         @keyframes floatUp {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-100vh); opacity: 0; }
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
     <div class="card">
-        <h1>Happy Teddy Day!</h1>
-        <img src="https://cdn-icons-png.flaticon.com/512/4710/4710099.png" alt="Cute Teddy Bear" class="teddy-img">
+        <h1>Happy Teddy Day! 🧸</h1>
         
+        <div class="gallery">
+            <img src="images/my-love.jpg" alt="My Love" class="gallery-img">
+            <img src="images/teddy-day-memoryu.jpg" alt="Memories" class="gallery-img">
+            <img src="images/s-smiling.jpg" alt="Smiles" class="gallery-img">
+        </div>
+
         <p>
-            Sending you this big bear hug to say 
-            how much I love you! <br>
-            You are softer and sweeter than any teddy.
+            To the cutest person I know,<br>
+            <span class="highlight">You make my life so soft and sweet.</span><br>
+            Here are some of my favorite moments with you.
+            Sending you a giant bear hug!
         </p>
 
-        <button class="btn" onclick="sendLove()">Send a Hug 🤗</button>
+        <button class="btn" onclick="sendLove()">Accept Hug 🤗</button>
     </div>
 
     <script>
-        // JavaScript: This adds the interactivity
+        // JavaScript: The Functionality
 
         function createHeart() {
             const heart = document.createElement('div');
             heart.classList.add('heart');
-            heart.innerHTML = '❤️'; // You can change this to 🧸 if you prefer!
             
-            // Randomize position and size
+            // Randomly choose between a Heart or a Teddy Bear emoji
+            const shapes = ['❤️', '🧸', '💖'];
+            heart.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
+            
+            // Randomize position (left to right)
             heart.style.left = Math.random() * 100 + 'vw';
-            heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
             
-            // Randomize animation duration
-            heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+            // Randomize size
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            // Randomize speed
+            heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
 
             document.body.appendChild(heart);
 
-            // Remove heart after animation keeps the browser fast
             setTimeout(() => {
                 heart.remove();
-            }, 5000);
+            }, 6000);
         }
 
-        // Create a background heart every 300ms
-        setInterval(createHeart, 300);
+        // Start the background hearts
+        setInterval(createHeart, 500);
 
-        // Interaction for the button
+        // What happens when she clicks the button
         function sendLove() {
-            alert("Hug sent successfully! ❤️🧸");
-            // Burst of hearts on click
-            for(let i=0; i<10; i++) {
+            // A burst of hearts!
+            for(let i=0; i<15; i++) {
                 setTimeout(createHeart, i * 100);
             }
+            alert("Hug accepted! I love you! ❤️🧸");
         }
     </script>
 </body>
