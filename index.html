@@ -3,59 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Real Life Teddy 🧸</title>
+    <title>For My Real Life Teddy 🧸</title>
     <style>
-        /* CSS: The Design Layer */
+        /* CSS: Mobile Optimized Design */
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
 
         body {
             margin: 0;
             padding: 0;
-            background-color: #ffe6e9; /* Soft pink background */
+            background-color: #ffe6e9;
             font-family: 'Quicksand', sans-serif;
+            min-height: 100vh;
+            /* Allow vertical scrolling, hide horizontal */
+            overflow-x: hidden; 
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            overflow: hidden; /* Keeps the hearts inside the window */
+            align-items: center; 
+        }
+
+        /* Container for hearts so they don't mess up scrolling */
+        #heart-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 0;
         }
 
         .card {
             background: rgba(255, 255, 255, 0.95);
-            padding: 40px;
+            /* Reduced padding for mobile */
+            padding: 25px; 
             border-radius: 20px;
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            max-width: 400px;
-            width: 90%;
+            max-width: 350px; /* Slightly narrower for phones */
+            width: 85%;
             z-index: 10;
             position: relative;
             border: 2px solid #fff0f3;
+            /* Ensure margin so it doesn't touch screen edges */
+            margin: 20px auto; 
         }
 
         h1 {
             font-family: 'Pacifico', cursive;
             color: #ff4d6d;
-            font-size: 2.2rem;
+            font-size: 2rem; /* Slightly smaller font */
             margin-top: 0;
+            margin-bottom: 15px;
             text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
 
-        /* --- THE GALLERY STYLES --- */
         .gallery {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
+            gap: 10px; /* Closer together */
+            margin: 15px 0;
             flex-wrap: wrap;
         }
 
         .gallery-img {
-            width: 90px;
-            height: 90px;
+            width: 75px; /* Smaller images for mobile */
+            height: 75px;
             object-fit: cover;
             border-radius: 50%;
-            border: 4px solid #ffccd5;
+            border: 3px solid #ffccd5;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             cursor: pointer;
@@ -68,29 +84,32 @@
 
         p {
             color: #590d22;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 20px 0;
+            font-size: 1rem; /* Readable mobile size */
+            line-height: 1.5;
+            margin: 15px 0;
         }
 
         .highlight {
             color: #ff4d6d;
             font-weight: bold;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .btn {
             background: linear-gradient(45deg, #ff4d6d, #ff758f);
             color: white;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-size: 1rem;
             cursor: pointer;
             font-family: 'Quicksand', sans-serif;
             font-weight: 600;
             transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+            margin-top: 10px;
+            width: 100%; /* Full width button on mobile looks nice */
+            max-width: 200px;
         }
 
         .btn:hover {
@@ -102,7 +121,7 @@
             transform: scale(0.95);
         }
 
-        /* Floating Heart Animation */
+        /* Floating Heart Styles */
         .heart {
             position: absolute;
             bottom: -10px;
@@ -110,7 +129,6 @@
             font-size: 24px;
             animation: floatUp 4s linear forwards;
             opacity: 0;
-            z-index: 1;
         }
 
         @keyframes floatUp {
@@ -121,12 +139,14 @@
 </head>
 <body>
 
+    <div id="heart-container"></div>
+
     <div class="card">
         <h1>Happy Teddy Day! 🧸</h1>
         
         <div class="gallery">
             <img src="my-love.jpg" alt="My Love" class="gallery-img">
-            <img src="teddy-day-memory.jpg" alt="Memories" class="gallery-img">
+            <img src="teddy-day-memoryu.jpg" alt="Memories" class="gallery-img">
             <img src="us-smiling.png" alt="Smiles" class="gallery-img">
         </div>
 
@@ -147,32 +167,24 @@
             const heart = document.createElement('div');
             heart.classList.add('heart');
             
-            // Randomly choose between a Heart or a Teddy Bear emoji
             const shapes = ['❤️', '🧸', '💖', '🎁'];
             heart.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
             
-            // Randomize position (left to right)
             heart.style.left = Math.random() * 100 + 'vw';
-            
-            // Randomize size
             heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
-            
-            // Randomize speed
             heart.style.animationDuration = (Math.random() * 3 + 4) + 's';
 
-            document.body.appendChild(heart);
+            // Append hearts to the fixed container, NOT the body
+            document.getElementById('heart-container').appendChild(heart);
 
             setTimeout(() => {
                 heart.remove();
             }, 6000);
         }
 
-        // Start the background hearts
         setInterval(createHeart, 500);
 
-        // What happens when she clicks the button
         function sendLove() {
-            // A burst of hearts!
             for(let i=0; i<15; i++) {
                 setTimeout(createHeart, i * 100);
             }
