@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Real Life Teddy 🧸</title>
+    <title>Your Real Life Teddy 🧸</title>
     <style>
         /* CSS: The Design Layer */
         @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;600&display=swap');
@@ -53,15 +53,14 @@
         .gallery-img {
             width: 90px;
             height: 90px;
-            object-fit: cover; /* This makes sure the photo fills the circle neatly */
-            border-radius: 50%; /* Makes the photos circular */
+            object-fit: cover;
+            border-radius: 50%;
             border: 4px solid #ffccd5;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        /* Cute hover effect when you touch a photo */
         .gallery-img:hover {
             transform: scale(1.15) rotate(5deg);
             border-color: #ff4d6d;
@@ -77,6 +76,7 @@
         .highlight {
             color: #ff4d6d;
             font-weight: bold;
+            font-size: 1.2rem;
         }
 
         .btn {
@@ -126,20 +126,18 @@
         
         <div class="gallery">
             <img src="my-love.jpg" alt="My Love" class="gallery-img">
-            
-            <img src="teddy-day-memory.png" alt="Memories" class="gallery-img">
-            
+            <img src="teddy-day-memoryu.jpg" alt="Memories" class="gallery-img">
             <img src="us-smiling.png" alt="Smiles" class="gallery-img">
         </div>
 
         <p>
-            To the cutest person I know,<br>
-            <span class="highlight">You make my life so soft and sweet.</span><br>
-            Here are some of my favorite moments with you.
-            Sending you a giant bear hug!
+            Who needs a stuffed toy when you have me?<br><br>
+            <span class="highlight">I'm your real-life Teddy Bear!</span><br>
+            (Limited Edition & Yours Forever)<br><br>
+            I promise to be warmer, softer, and more cuddly than any bear in the store.
         </p>
 
-        <button class="btn" onclick="sendLove()">Accept Hug 🤗</button>
+        <button class="btn" onclick="sendLove()">Claim Your Teddy 🎁</button>
     </div>
 
     <script>
@@ -150,7 +148,7 @@
             heart.classList.add('heart');
             
             // Randomly choose between a Heart or a Teddy Bear emoji
-            const shapes = ['❤️', '🧸', '💖'];
+            const shapes = ['❤️', '🧸', '💖', '🎁'];
             heart.innerHTML = shapes[Math.floor(Math.random() * shapes.length)];
             
             // Randomize position (left to right)
@@ -178,7 +176,7 @@
             for(let i=0; i<15; i++) {
                 setTimeout(createHeart, i * 100);
             }
-            alert("Hug accepted! I love you! ❤️🧸");
+            alert("Yay! You are stuck with me now! I love you! ❤️🧸");
         }
     </script>
 </body>
